@@ -1,1 +1,490 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090909">
+<title>KB Esports | Rocket League Sideswipe</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #090909;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --red: #ed202b;
+  --dark: #101010;
+  --muted: #a3a3a3;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8,8,8,.95);
+  border-bottom: 1px solid #292929;
+  padding: 18px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 29px;
+  font-weight: 1000;
+  letter-spacing: 3px;
+}
+
+.logo span {
+  color: var(--red);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+.nav-links a:hover {
+  color: var(--red);
+}
+
+.menu {
+  display: none;
+  color: white;
+  background: none;
+  border: none;
+  font-size: 27px;
+}
+
+.hero {
+  min-height: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 20px;
+  background:
+    radial-gradient(ellipse at center, #551015 0%, #1b0809 35%, #090909 75%);
+}
+
+.tag {
+  color: var(--red);
+  font-weight: bold;
+  letter-spacing: 5px;
+  font-size: 12px;
+}
+
+.hero h1 {
+  font-size: clamp(75px, 17vw, 155px);
+  font-weight: 1000;
+  letter-spacing: 12px;
+  text-shadow: 0 0 35px #ed202b66;
+  margin: 15px 0;
+}
+
+.hero h1 span {
+  color: var(--red);
+}
+
+.hero p {
+  color: #c5c5c5;
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--red);
+  color: white;
+  padding: 15px 27px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: .2s;
+}
+
+.btn:hover {
+  background: #bd111c;
+  transform: translateY(-3px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--red);
+  margin-left: 10px;
+}
+
+section {
+  padding: 85px 8%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-title h2 {
+  font-size: 34px;
+  letter-spacing: 3px;
+}
+
+.section-title h2 span {
+  color: var(--red);
+}
+
+.section-title p {
+  color: var(--muted);
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.about {
+  background: #101010;
+  text-align: center;
+}
+
+.about p {
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.9;
+  color: #bdbdbd;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  max-width: 750px;
+  margin: 45px auto 0;
+}
+
+.stat {
+  background: #191919;
+  padding: 25px 10px;
+  border-bottom: 3px solid var(--red);
+}
+
+.stat h3 {
+  color: var(--red);
+  font-size: 30px;
+}
+
+.stat p {
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+.rosters {
+  background: #090909;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.team {
+  background: linear-gradient(145deg, #1b1b1b, #101010);
+  border: 1px solid #303030;
+  border-radius: 8px;
+  padding: 30px;
+}
+
+.team h3 {
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+.team h3 span {
+  color: var(--red);
+}
+
+.team .subtitle {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 25px;
+}
+
+.player {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-top: 1px solid #303030;
+  font-size: 14px;
+}
+
+.player span:last-child {
+  color: var(--red);
+  font-weight: bold;
+}
+
+.empty {
+  color: #777;
+  font-size: 13px;
+  padding: 15px 0;
+}
+
+.recruit {
+  background: linear-gradient(120deg, #30090c, #120808, #090909);
+  text-align: center;
+}
+
+.recruit p {
+  color: #ccc;
+  line-height: 1.8;
+  max-width: 550px;
+  margin: 15px auto 30px;
+}
+
+.clips {
+  background: #101010;
+  text-align: center;
+}
+
+.clips p {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+.discord {
+  text-align: center;
+  background: #090909;
+}
+
+.discord p {
+  color: var(--muted);
+  margin: 15px 0 30px;
+}
+
+footer {
+  background: #050505;
+  text-align: center;
+  padding: 30px 15px;
+  border-top: 1px solid #252525;
+  color: #777;
+  font-size: 12px;
+}
+
+footer strong {
+  color: var(--red);
+}
+
+@media(max-width:700px) {
+  nav {
+    padding: 15px 6%;
+  }
+
+  .menu {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 62px;
+    left: 0;
+    width: 100%;
+    background: #101010;
+    flex-direction: column;
+    padding: 25px;
+    gap: 22px;
+    border-bottom: 1px solid #333;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .hero {
+    min-height: 530px;
+  }
+
+  .hero h1 {
+    letter-spacing: 5px;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 65px 6%;
+  }
+
+  .btn-outline {
+    margin: 12px 0 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">K<span>B</span></div>
+
+  <button class="menu" onclick="toggleMenu()">☰</button>
+
+  <div class="nav-links" id="navLinks">
+    <a href="#home" onclick="closeMenu()">HOME</a>
+    <a href="#about" onclick="closeMenu()">ABOUT</a>
+    <a href="#rosters" onclick="closeMenu()">ROSTER</a>
+    <a href="#recruitment" onclick="closeMenu()">RECRUITMENT</a>
+    <a href="#clips" onclick="closeMenu()">CLIPS</a>
+    <a href="#discord" onclick="closeMenu()">DISCORD</a>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="tag">ROCKET LEAGUE SIDESWIPE</div>
+  <h1>K<span>B</span></h1>
+  <p>COMPETE. IMPROVE. DOMINATE.</p>
+  <div>
+    <a class="btn" href="#rosters">MEET THE TEAM</a>
+    <a class="btn btn-outline"
+       href="https://discord.gg/ZnfGRUM6j"
+       target="_blank">JOIN DISCORD</a>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <div class="section-title">
+    <h2>ABOUT <span>KB</span></h2>
+    <p>MORE THAN JUST A TEAM</p>
+  </div>
+
+  <p>
+    Welcome to KB, a Rocket League Sideswipe community
+    bringing players together from across the world.
+    Connect with other players, improve your skills,
+    compete with the team and become part of the community.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <h3>EU</h3>
+      <p>EUROPEAN TEAM</p>
+    </div>
+    <div class="stat">
+      <h3>NA</h3>
+      <p>NORTH AMERICAN TEAM</p>
+    </div>
+    <div class="stat">
+      <h3>KB</h3>
+      <p>ONE COMMUNITY</p>
+    </div>
+  </div>
+</section>
+
+<section class="rosters" id="rosters">
+  <div class="section-title">
+    <h2>OUR <span>ROSTER</span></h2>
+    <p>MEET THE PLAYERS REPRESENTING KB</p>
+  </div>
+
+  <div class="team-grid">
+    <div class="team">
+      <h3><span>EU</span> TEAM</h3>
+      <p class="subtitle">EUROPEAN DIVISION</p>
+
+      <div class="empty">
+        Official EU player roster coming soon.
+      </div>
+    </div>
+
+    <div class="team">
+      <h3><span>NA</span> TEAM</h3>
+      <p class="subtitle">NORTH AMERICAN DIVISION</p>
+
+      <div class="empty">
+        Official NA player roster coming soon.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="recruit" id="recruitment">
+  <div class="section-title">
+    <h2>JOIN <span>KB</span></h2>
+    <p>THINK YOU HAVE WHAT IT TAKES?</p>
+  </div>
+
+  <p>
+    Interested in joining KB? Meet the community,
+    find out about recruitment and speak to the team
+    through our official Discord server.
+  </p>
+
+  <a class="btn" href="https://discord.gg/ZnfGRUM6j"
+     target="_blank">APPLY THROUGH DISCORD</a>
+</section>
+
+<section class="clips" id="clips">
+  <div class="section-title">
+    <h2>KB <span>HIGHLIGHTS</span></h2>
+    <p>THE BEST MOMENTS FROM THE COMMUNITY</p>
+  </div>
+
+  <p>Player clips and community highlights coming soon.</p>
+
+  <a class="btn" href="https://discord.gg/ZnfGRUM6j"
+     target="_blank">SUBMIT YOUR CLIPS</a>
+</section>
+
+<section class="discord" id="discord">
+  <div class="section-title">
+    <h2>JOIN THE <span>COMMUNITY</span></h2>
+  </div>
+
+  <p>Connect with KB players and become part of the community.</p>
+
+  <a class="btn" href="https://discord.gg/ZnfGRUM6j"
+     target="_blank">JOIN KB DISCORD</a>
+</section>
+
+<footer>
+  <strong>KB ESPORTS</strong>
+  <p>ROCKET LEAGUE SIDESWIPE</p>
+  <p style="margin-top:12px">© <span id="year"></span> KB. All rights reserved.</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("open");
+}
+
+function closeMenu() {
+  document.getElementById("navLinks").classList.remove("open");
+}
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+</script>
+
+</body>
+</html>
